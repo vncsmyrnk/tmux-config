@@ -4,10 +4,10 @@ My tmux config.
 
 ## Install
 
-### tmux
+### Install tmux and config
 
 ```bash
-sudo apt install tmux
+bash <(curl -s https://raw.githubusercontent.com/vncsmyrnk/zsh-config/main/install.sh)
 ```
 
 ### Just the config
