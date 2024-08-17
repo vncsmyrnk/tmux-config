@@ -20,9 +20,13 @@ before() {
   sudo apt-get install tmux
 }
 
+config() {
+  ln -s $SCRIPT_DIR/.tmux.conf $HOME/.tmux.conf
+}
+
 symbolic_install() {
   before
-  ln -s $SCRIPT_DIR/.tmux.conf $HOME/.tmux.conf
+  config
   echo -e "\033[1;32mDone.\033[0m"
 }
 
