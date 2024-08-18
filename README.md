@@ -1,26 +1,19 @@
-# tmux-config
+# tmux Config
 
 My tmux config.
 
 ## Install
 
-### Install tmux and config
+This project uses [just](https://github.com/casey/just) and [stow](https://www.gnu.org/software/stow/) for the installation.
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/vncsmyrnk/zsh-config/main/install.sh)
+just install
 ```
 
-### Just the config
+Considering `tmux` is already installed, you can just run:
 
 ```bash
-curl -O ~ https://raw.githubusercontent.com/vncsmyrnk/tmux-config/main/.tmux.conf
-```
-
-### Clone
-
-```bash
-git clone git@github.com:vncsmyrnk/tmux-config.git $HOME/utils
-ln -s $HOME/utils/tmux-config/.tmux.conf $HOME/.tmux.conf
+just config
 ```
 
 After downloading the config, run `tmux source ~/.tmux.conf` and `PREFIX + I` for installing the plugins.
