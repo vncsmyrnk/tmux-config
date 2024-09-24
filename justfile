@@ -17,8 +17,10 @@ install: install-deps config
 
 config:
   stow -t {{home_dir()}} .
-  tmux source ~/.tmux.conf
-  @echo "Press prefix + I (capital i, as in Install) to fetch the plugin."
+  @echo "Press prefix + I (capital i, as in Install) to fetch the plugins"
 
 delete-config:
   stow -D -t {{home_dir()}} .
+
+source-config:
+  tmux source ~/.tmux.conf
