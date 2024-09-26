@@ -1,14 +1,13 @@
-os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2`
-os_full := if os == "\"Arch Linux\"" { "arch" } else if os == "\"Debian GNU/Linux\"" { "debian" } else { error("Unsuported OS") }
+os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
 
 default:
   just --list
 
 install-deps:
   #!/bin/bash
-  if [ "{{os_full}}" = "debian" ]; then
+  if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
     sudo apt-get install tmux stow
-  elif [ "{{os_full}}" = "arch" ]; then
+  elif [ "{{os}}" = "Arch Linux" ]; then
     sudo pacman -S tmux stow
   fi
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
