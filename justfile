@@ -10,7 +10,7 @@ install-deps:
   elif [ "{{os}}" = "Arch Linux" ]; then
     sudo pacman -S tmux stow
   fi
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 install: install-deps config
 
