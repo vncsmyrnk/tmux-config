@@ -18,7 +18,7 @@ config:
   stow -t {{home_dir()}} .
   ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
-delete-config:
+unset-config:
   stow -D -t {{home_dir()}} .
 
 source-config:
