@@ -1,6 +1,6 @@
-# tmux Config
+# My tmux config
 
-My tmux config.
+This is my [tmux](https://github.com/tmux/tmux/wiki) config.
 
 ## Install
 
