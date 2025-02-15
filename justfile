@@ -1,6 +1,6 @@
 os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
 
-utils_path := "${UTILS_SCRIPTS_DIR:-$HOME/utils}"
+scripts_path := "${SU_SCRIPTS_PATH:-$HOME/.config/util/scripts}"
 
 default:
   just --list
@@ -17,13 +17,14 @@ install-deps:
 install: install-deps config
 
 config:
-  stow -t {{home_dir()}} . --ignore=utils
-  stow -t {{utils_path}} utils
+  mkdir -p {{scripts_path}}
+  stow -t {{home_dir()}} . --ignore=scripts
+  stow -t {{scripts_path}} scripts
   ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 unset-config:
-  stow -D -t {{home_dir()}} . --ignore=utils
-  stow -D -t {{utils_path}} utils
+  stow -D -t {{home_dir()}} . --ignore=scripts
+  stow -D -t {{scripts_path}} scripts
 
 source-config:
   tmux source ~/.tmux.conf
