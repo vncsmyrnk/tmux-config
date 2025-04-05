@@ -8,7 +8,12 @@ default:
 install-deps:
   #!/bin/bash
   if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
-    sudo apt-get install tmux stow
+    sudo apt-get install stow
+    if command -v brew >/dev/null; then
+      brew install tmux # prefers tmux version as it is updated more often
+    else
+      sudo apt-get install tmux
+    fi
   elif [ "{{os}}" = "Arch Linux" ]; then
     sudo pacman -S tmux stow
   fi
