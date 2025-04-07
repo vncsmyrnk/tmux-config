@@ -1,0 +1,4 @@
+# vim: set ft=zsh:
+
+alias tks='tmux kill-server'
+alias ta='tmux a -t'
