@@ -1,7 +1,7 @@
 os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
 
 scripts_path := "${SU_SCRIPTS_PATH:-$HOME/.config/util/scripts}/tmux"
-config_path := "${UTILS_RC_PATH:-$HOME/.utils/rc}/tmux"
+config_path := "${UTILS_CUSTOM_RC_PATH:-$HOME/.utils/custom}/tmux"
 
 default:
   just --list
