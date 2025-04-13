@@ -3,3 +3,4 @@
 alias tks='tmux kill-server'
 alias ta='tmux a -t'
 alias tn='tmux new'
+alias tls='tmux ls'
