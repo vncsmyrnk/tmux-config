@@ -20,7 +20,10 @@ install-deps:
   fi
   [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-install: install-deps config
+install-tpm:
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+install: install-deps install-tpm config
 
 config:
   mkdir -p {{scripts_path}} {{config_path}}
