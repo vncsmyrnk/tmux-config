@@ -10,8 +10,8 @@ install-deps:
   #!/bin/bash
   if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
     sudo apt-get install stow
-    if command -v brew >/dev/null; then
-      brew install tmux # prefers tmux version as it is updated more often
+    if command -v nix-env >/dev/null; then
+      nix-env -iA nixpkgs.tmux # prefers nix version as it is updated more often
     else
       sudo apt-get install tmux
     fi
