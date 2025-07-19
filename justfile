@@ -6,24 +6,23 @@ config_path := "${SU_RC_SOURCE_PATH:-$HOME/.config/setup}/tmux"
 default:
   just --list
 
-install-deps:
+check-deps:
   #!/bin/bash
-  if [ "{{os}}" = "Debian GNU/Linux" ] || [ "{{os}}" = "Ubuntu" ]; then
-    sudo apt-get install stow
-    if command -v nix-env >/dev/null; then
-      nix-env -iA nixpkgs.tmux # prefers nix version as it is updated more often
-    else
-      sudo apt-get install tmux
-    fi
-  elif [ "{{os}}" = "Arch Linux" ]; then
-    sudo pacman -S tmux stow
+  dependencies=(stow tmux)
+  missing_dependencies=($(for dep in "${dependencies[@]}"; do command -v "$dep" &> /dev/null || echo "$dep"; done))
+
+  if [ ${#missing_dependencies[@]} -gt 0 ]; then
+    echo "Dependencies not found: ${missing_dependencies[*]}"
+    echo "Please install them with the appropriate package manager"
+    exit 1
   fi
+
   [ ! -d ~/.tmux/plugins/tpm ] && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 install-tpm:
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-install: install-deps install-tpm config
+install: check-deps install-tpm config
 
 config:
   mkdir -p {{scripts_path}} {{config_path}}
