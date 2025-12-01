@@ -38,3 +38,6 @@ unset-config:
 
 source-config:
   tmux source ~/.tmux.conf
+
+force-reload:
+  rm -rf /tmp/tmux-*
