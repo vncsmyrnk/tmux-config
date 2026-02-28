@@ -1,8 +1,3 @@
-os := `cat /etc/os-release | grep "^NAME=" | cut -d "=" -f2 | tr -d '"'`
-
-scripts_path := "${SU_SCRIPTS_PATH:-$HOME/.config/util/scripts}/tmux"
-config_path := "${SU_RC_SOURCE_PATH:-$HOME/.config/setup}/tmux"
-
 default:
   just --list
 
@@ -25,16 +20,15 @@ install-tpm:
 install: check-deps install-tpm config
 
 config:
-  mkdir -p {{scripts_path}} {{config_path}}
   stow -t {{home_dir()}} . --ignore=scripts --ignore='^config'
-  stow -t {{scripts_path}} scripts
-  stow -t {{config_path}} config
+  util config add scripts -t tmux --force
+  util config add config -p setup -t tmux --force
   ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 unset-config:
   stow -D -t {{home_dir()}} . --ignore=scripts --ignore='^config'
-  stow -D -t {{scripts_path}} scripts
-  stow -D -t {{config_path}} config
+  util config remove scripts/tmux --force
+  util config remove setup/tmux --force
 
 source-config:
   tmux source ~/.tmux.conf
