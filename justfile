@@ -29,8 +29,7 @@ config:
 unset-config:
   stow -D -t "{{home_dir()}}" . --ignore=scripts --ignore='^config'
   stow -D -t "$HOME/.config/shell-setup/tmux" config
-  util config remove scripts/tmux --force
-  util config remove setup/tmux --force
+  util config remove tmux --force
 
 source-config:
   tmux source ~/.tmux.conf
