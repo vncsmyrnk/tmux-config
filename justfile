@@ -22,14 +22,12 @@ install: check-deps install-tpm config
 config:
   @mkdir -p "$HOME/.config/shell-setup/tmux"
   stow -t "{{home_dir()}}" . --ignore=scripts --ignore='^config'
-  util config add scripts -t tmux
   stow -t "$HOME/.config/shell-setup/tmux" config --no-folding
   ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 unset-config:
   stow -D -t "{{home_dir()}}" . --ignore=scripts --ignore='^config'
   stow -D -t "$HOME/.config/shell-setup/tmux" config
-  util config remove tmux --force
 
 source-config:
   tmux source ~/.tmux.conf
